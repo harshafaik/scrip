@@ -1,0 +1,8 @@
+/target
+/out
+/references
+*.parquet
+!tests/fixtures/*.parquet
+*.log
+.commandcode/
+.agents/

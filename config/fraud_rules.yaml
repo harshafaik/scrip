@@ -1,0 +1,174 @@
+# Global Generation Settings
+global:
+  seed: 5555
+  base_currency: "INR"
+  default_country: "IN"
+
+# Payment Channel Distribution (Market Share)
+payment_channels:
+  upi:
+    market_share: 0.70 # Was 0.85
+    risk_level: 0.7
+    user_agents:
+      - "GPay/1.1 (Android 11)"
+      - "PhonePe/4.2 (iOS 15.4)"
+      - "Paytm/10.5 (Android 10)"
+      - "BHIM/2.9 (Android 12)"
+  mobile_wallets:
+    market_share: 0.10
+    risk_level: 0.6
+    user_agents:
+      - "AmazonPay/1.0"
+      - "MobiKwik/4.2"
+      - "Freecharge/5.1"
+  cards:
+    market_share: 0.10 # Was 0.05
+    risk_level: 0.9
+    user_agents:
+      - "Chrome/121.0 (Win10)"
+      - "Safari/15.4 (macOS)"
+  online:
+    market_share: 0.07 # New
+    risk_level: 0.8
+    user_agents:
+      - "Chrome/121.0 (Win10)"
+      - "Safari/15.4 (macOS)"
+  mobile_banking:
+    market_share: 0.03 # New
+    risk_level: 0.5
+    user_agents:
+      - "BankApp/4.0 (iOS 16)"
+      - "BankApp/3.5 (Android 13)"
+
+# High-Fidelity Amount Patterns
+fraud_patterns:
+  daily_retail_amounts: [10, 20, 50, 100, 150, 200, 450, 500, 750, 999]
+  # Overlap UPI scams with normal grocery/retail spend
+  upi_common_amounts: [150, 450, 800, 1200, 2500, 3000, 4500, 5000, 7500, 10000]
+  wallet_amounts: [50, 150, 499, 999, 1499, 2000, 2999, 4999, 7999]
+  # Keep some high value, but add mid-range leakage
+  high_value_amounts: [5000, 8500, 12000, 25000, 35000, 50000, 75000]
+  round_amounts: [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000]
+  velocity_test_amounts: [1.01, 1.23, 2.05, 1.00, 5.00, 10.00, 25.00, 50.00]
+  cnp_common_amounts: [49.99, 99.99, 149.50, 299.99, 499.00, 19.99, 29.99]
+
+# Network and Device Patterns
+device_patterns:
+  ip_prefixes: ["182.72.", "122.160.", "103.21.", "139.59."]
+  bot_user_agent_prefix: "Bot/1.0 (Scanner)"
+  known_bad_prefixes:
+    "182.72.0.0": 0.7
+    "103.21.244": 0.8
+    "139.59.0.0": 0.6
+  ato_ua_pool:
+    - "Mozilla/5.0 (Linux; Android 10; SM-G960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 11; Pixel 4 XL) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (iPhone; CPU iPhone OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Mobile/15E148 Safari/604.1"
+    - "Mozilla/5.0 (Linux; Android 9; Redmi Note 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 10; ONEPLUS A6013) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 11; vivo 1906) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 10; OPPO CPH1907) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1"
+    - "Mozilla/5.0 (Linux; Android 11; realme RMX2001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 9; SM-J600G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 10; POCO F1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 11; Moto G Power) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (iPhone; CPU iPhone OS 12_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1"
+    - "Mozilla/5.0 (Linux; Android 10; Mi A3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 11; ASUS_X00TD) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 9; Nokia 6.1 Plus) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Mobile/15E148 Safari/604.1"
+    - "Mozilla/5.0 (Linux; Android 10; LG-H930) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 11; Sony G8341) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    - "Mozilla/5.0 (Linux; Android 9; HTC U12+) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"
+
+# High-Fidelity Fraud Profiles
+fraud_injector:
+  target_share: 0.01 # 1% intentional fraud
+  default_fp_rate: 0.005 # 0.5% baseline "noise" fraud
+  default_fn_rate: 0.08
+  customer_fraud_multiplier: 3.0
+  profiles:
+    upi_scam:
+      frequency: 0.35
+      amount_pattern: "upi_common_amounts"
+      amount_strategy: "customer_normal_range"
+      amount_multiplier: "1.5_to_4.0"
+      channel_bias: { upi: 0.80 }
+      geo_anomaly_prob: 0.95
+      temporal_anomaly_prob: 0.70
+      merchant_bias: { GENERAL_RETAIL: 0.25, SERVICES: 0.25, FOOD_AND_DRINK: 0.20, RETAIL: 0.15, GROCERY: 0.15 }
+    account_takeover:
+      frequency: 0.25
+      amount_pattern: "high_value_amounts"
+      amount_strategy: "customer_normal_range"
+      amount_multiplier: "0.95_to_1.05"
+      channel_bias: { mobile_banking: 0.40, upi: 0.30, online: 0.30 }
+      geo_anomaly_prob: 0.60
+      temporal_anomaly_prob: 0.90
+      merchant_bias: { ELECTRONICS: 0.20, LUXURY: 0.20, TRAVEL: 0.20, ENTERTAINMENT: 0.20, GENERAL_RETAIL: 0.20 }
+    velocity_abuse:
+      frequency: 0.15
+      amount_pattern: "velocity_test_amounts"
+      amount_strategy: "customer_normal_range"
+      amount_multiplier: "0.90_to_1.10"
+      channel_bias: { upi: 0.70, online: 0.30 }
+      geo_anomaly_prob: 0.20
+      temporal_anomaly_prob: 0.40
+      merchant_bias: { ENTERTAINMENT: 0.20, FOOD_AND_DRINK: 0.20, SERVICES: 0.20, TRAVEL: 0.20, GAMBLING: 0.05 }
+    card_not_present:
+      frequency: 0.15
+      amount_pattern: "cnp_common_amounts"
+      amount_strategy: "customer_normal_range"
+      amount_multiplier: "1.0_to_5.0"
+      channel_bias: { online: 0.70, cards: 0.30 }
+      geo_anomaly_prob: 0.40
+      temporal_anomaly_prob: 0.50
+      merchant_bias: { ELECTRONICS: 0.20, RETAIL: 0.20, LUXURY: 0.20, TRAVEL: 0.20, ENTERTAINMENT: 0.20 }
+    friendly_fraud:
+      frequency: 0.10
+      amount_pattern: "round_amounts"
+      amount_strategy: "customer_normal_range"
+      amount_multiplier: "0.5_to_1.5"
+      channel_bias: { upi: 0.40, cards: 0.60 }
+      geo_anomaly_prob: 0.00
+      temporal_anomaly_prob: 0.10
+      merchant_bias: { TRAVEL: 0.20, FOOD_AND_DRINK: 0.20, SERVICES: 0.20, RETAIL: 0.20, GENERAL_RETAIL: 0.20 }
+
+# Campaign Configurations
+fraud_campaigns:
+  target_campaign_share: 0.0
+  profiles:
+    coordinated_attack:
+      frequency: 0.4
+    sequential_takeover:
+      frequency: 0.3
+      amount_escalation: 0.30
+    burst_campaign:
+      frequency: 0.3
+
+# High-Fidelity Failure Reasons
+failure_reasons_by_type:
+  upi_scam: ["Invalid UPI PIN", "Payment request declined"]
+  account_takeover: ["Unusual login location", "Device fingerprint mismatch"]
+  velocity_abuse: ["Velocity limit exceeded", "Suspect IP address"]
+  card_not_present: ["CVV mismatch", "3DS authentication failed"]
+  friendly_fraud: ["Chargeback requested", "Transaction not recognized"]
+
+# Behavioral Fraud Flags
+fraud_flags:
+  upi_scam: ["social_engineering_detected", "urgent_payment_request", "money_mule_destination"]
+  account_takeover: ["proxy_detected", "credential_stuffing_attempt", "session_hijacking_risk", "new_device_on_old_account"]
+  velocity_abuse: ["automated_script_pattern", "device_id_rotation", "rapid_fire_attempt"]
+  card_not_present: ["headless_browser_detected", "virtual_card_usage", "high_risk_bin", "tor_exit_node"]
+  friendly_fraud: ["chargeback_history", "first_time_high_value_luxury"]
+
+# Temporal Patterns
+temporal_patterns:
+  upi_scam:
+    hourly_weights: [0.3, 0.2, 0.2, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2.0, 1.9, 1.7, 1.5, 1.2, 0.8]
+    daily_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+  account_takeover:
+    # 70%+ concentrated in 00:00-04:00
+    hourly_weights: [2.0, 2.0, 1.5, 1.0, 0.8, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.5, 0.8, 0.5, 0.3, 0.2, 0.1]
+    daily_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
